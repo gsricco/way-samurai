@@ -1,0 +1,21 @@
+/*.content {
+    grid-area: c;
+    background: cornflowerblue;
+}*/
+
+.backHeader {
+    max-width: 1000px;
+    width: 100%;
+    height: 180px;
+    /* margin: 0 10px;  */
+    /* overflow: hidden; */
+}
+.avatar {
+    padding: 10px;
+}
+.avatarImg {
+    max-width: 120px;
+    margin: 10px 0;
+    /* border: 3px solid red; */
+    /* overflow: hidden; */
+}

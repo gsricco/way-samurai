@@ -1,0 +1,37 @@
+.item {
+    display: flex;
+    flex-wrap: wrap;
+    color: ghostwhite;
+}
+
+.item img {
+    width: 50px;
+    /* height: 80px; */
+
+    border: 1px solid black;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 10px;
+}
+
+.message {
+    width: 90%;
+    margin: 10px;
+
+}
+
+.like {
+    display: flex;
+    width: 30%;
+    /*flex-wrap: wrap;*/
+}
+
+.like span {
+    color: darkslateblue;
+    text-shadow: 1px 1px 2px gold;
+}
+
+.like div {
+    color: crimson;
+    text-shadow: 1px 1px 2px red;
+}

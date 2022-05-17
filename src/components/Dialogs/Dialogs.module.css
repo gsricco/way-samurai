@@ -1,0 +1,64 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+
+}
+
+.dialogsItems {
+    padding: 10px;
+}
+
+.dialog {
+    height: 25px;
+    margin: 5px;
+    padding: 5px;
+}
+
+.dialog img {
+    width: 20px;
+    border-radius: 50%;
+    margin: 5px;
+}
+
+.dialog a {
+    display: flex;
+    align-items: center;
+    color: ghostwhite;
+    text-decoration: none;
+}
+.dialog a:hover {
+    color: goldenrod;
+}
+.dialog a.activeLink {
+    color: goldenrod;
+}
+
+.dialogsMessages {
+
+}
+
+.message {
+    font-size: smaller;
+    color: gainsboro;
+    white-space: nowrap; /* Запрещаем перенос строк */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Добавляем многоточие */
+
+    width: 15%;
+    height: 25px;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 5px; /* Поля вокруг текста */
+
+    background: gray; /* Цвет фона */
+    box-shadow: 5px 5px 5px dimgrey;
+    /*z-index: 0;*/
+}
+
+.message:nth-child(even) {
+    text-align: left;
+    margin-left: 30%;
+}
+.anser{
+    display: flex;
+}

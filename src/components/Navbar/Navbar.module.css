@@ -1,0 +1,46 @@
+.nav {
+    /*width: 90%;*/
+    padding: 20px;
+    grid-area: n;
+    background: rgb(90, 224, 90);
+}
+
+.item a{
+    color: white;
+    text-decoration: none;
+}
+.item a:hover{
+    color: goldenrod;
+}
+.item a.activeLink {
+    color: goldenrod;
+}
+.sideBar {
+   margin-top: 30px;
+    text-align: center;
+}
+.sideBar span {
+    font-weight: bold;
+    text-transform: uppercase;
+
+    text-shadow: 2px 2px 2px grey;
+}
+.friends{
+    margin:2px;
+}
+.freindsElement{
+    display: flex;
+    font-size: 10px;
+    justify-content: center;
+}
+
+.avatarFr img {
+    width: 30px;
+    border-radius: 50%;
+    border:1px solid black;
+}
+.nameFr span {
+    text-transform: none;
+    font-weight: normal;
+
+}
