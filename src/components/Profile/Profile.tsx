@@ -4,8 +4,8 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {ProfilePageType} from "../../App";
 
 type ProfilePropsType = {
-    state: ProfilePageType
-    addPost:(postMessage:string)=>void
+    profilePage: ProfilePageType
+    addPost:()=>void
     changeNewTextCallback:(newText:string)=>void
 }
 
@@ -20,7 +20,7 @@ const Profile = (props:ProfilePropsType) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts posts={props.state.posts} addPost={props.addPost} changeNewTextCallback={props.changeNewTextCallback} message={props.state.messageForNewPost}/>
+            <MyPosts posts={props.profilePage.posts} addPost={props.addPost} changeNewTextCallback={props.changeNewTextCallback} newPostText={props.profilePage.newPostText}/>
         </div>
     )
 }

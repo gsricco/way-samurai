@@ -8,16 +8,16 @@ import {Route} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {addPost, changeNewText} from "./redux/state";
+import {StoreType} from "./redux/state";
 
-export type MessagesType= {
+export type MessagesType = {
     id: number
     message: string
 }
 export type DialogsType = {
     id: number
     name: string
-    avatar:string
+    avatar: string
 }
 export type PostsType = {
     id: number
@@ -27,11 +27,11 @@ export type PostsType = {
 export type SideBarType = {
     id: number
     name: string
-    avatar:string
+    avatar: string
 }
 
 export type ProfilePageType = {
-    messageForNewPost:string
+    newPostText: string
     posts: Array<PostsType>
 }
 export type DialogsPageType = {
@@ -39,7 +39,7 @@ export type DialogsPageType = {
     dialogs: Array<DialogsType>
 }
 export type SideBarPageType = {
-    friends:Array<SideBarType>
+    friends: Array<SideBarType>
 }
 export type StateType = {
     profilePage: ProfilePageType
@@ -47,33 +47,38 @@ export type StateType = {
     sideBar: SideBarPageType
 }
 type AppPropsType = {
-    state:StateType
-    addPost:(postMessage:string)=>void
-    changeNewText:(newText:string)=>void
+    store: StoreType
+    // state:StateType
+    // addPost:()=>void
+    // changeNewText:(newText:string)=>void
 }
 
 
-function App(props:AppPropsType) {
+function App(props: AppPropsType) {
+    const state = props.store.getState();
+
     return (
-            <div className='app-wrapper'>
-                <Header/>
-                <Navbar sideBar={props.state.sideBar}/>
-                <div className='app-wrapper-content'>
-                   {/* <Route path='/dialogs' component={Dialogs}/>
+        <div className='app-wrapper'>
+            <Header/>
+            <Navbar sideBar={state.sideBar}/>
+            <div className='app-wrapper-content'>
+                {/* <Route path='/dialogs' component={Dialogs}/>
                     <Route path='/profile' component={Profile}/>
                     <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>
                     <Route path='/settings' component={Settings}/>*/}
 
-                    <Route path='/dialogs' render={()=><Dialogs state={props.state.dialogsPage}/>} />
-                    <Route path='/profile' render={()=><Profile state={props.state.profilePage} addPost={props.addPost} changeNewTextCallback={props.changeNewText}/>}/>
-                    <Route path='/news' render={()=><News />}/>
-                    <Route path='/music' render={()=><Music />}/>
-                    <Route path='/settings' render={()=><Settings />}/>
+                <Route path='/dialogs' render={() => <Dialogs state={state.dialogsPage}/>}/>
+                <Route path='/profile' render={() => <Profile profilePage={state.profilePage}
+                                                              addPost={props.store.addPost.bind(props.store)}
+                                                              changeNewTextCallback={props.store.changeNewText.bind(props.store)}/>}/>
+                <Route path='/news' render={() => <News/>}/>
+                <Route path='/music' render={() => <Music/>}/>
+                <Route path='/settings' render={() => <Settings/>}/>
 
 
-                </div>
             </div>
+        </div>
 
     );
 }

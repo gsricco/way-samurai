@@ -9,8 +9,8 @@ type PostsType = {
 }
 type PostPropsType = {
     posts: Array<PostsType>
-    message:string
-    addPost:(postMessage:string)=>void
+    newPostText:string
+    addPost:()=>void
     changeNewTextCallback:(newText:string)=>void
 }
 
@@ -21,11 +21,12 @@ const MyPosts = (props: PostPropsType) => {
     let newPostElement = React.createRef<HTMLTextAreaElement>();
     const addPost = () => {
         // let text = newPostElement.current?.value;
-        if(newPostElement.current) {
-            let text = newPostElement.current.value;
-            props.addPost(text)
-            newPostElement.current.value = '';
-        }
+        // if(newPostElement.current) {
+        //     let text = newPostElement.current.value;
+            props.addPost()
+            // newPostElement.current.value = '';
+            // props.changeNewTextCallback('')
+        // }
     }
     const newTextChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>)=>{
         props.changeNewTextCallback(e.currentTarget.value)
@@ -36,7 +37,7 @@ const MyPosts = (props: PostPropsType) => {
             <h3>My posts</h3>
             <div className={s.postInput}>
                 <div>
-                    <textarea ref={newPostElement} value={props.message} onChange={newTextChangeHandler}></textarea>
+                    <textarea ref={newPostElement} value={props.newPostText} onChange={newTextChangeHandler}/>
                 </div>
                 <div>
                     <button onClick={addPost}>Add post</button>
