@@ -37,6 +37,7 @@ export type ProfilePageType = {
 export type DialogsPageType = {
     messages: Array<MessagesType>
     dialogs: Array<DialogsType>
+    newMessageBody: string
 }
 export type SideBarPageType = {
     friends: Array<SideBarType>
@@ -68,10 +69,15 @@ function App(props: AppPropsType) {
                     <Route path='/music' component={Music}/>
                     <Route path='/settings' component={Settings}/>*/}
 
-                <Route path='/dialogs' render={() => <Dialogs state={state.dialogsPage}/>}/>
+                <Route path='/dialogs' render={() => <Dialogs state={state.dialogsPage}
+                                                              dispatch={props.store.dispatch.bind(props.store)}/>}/>
+
                 <Route path='/profile' render={() => <Profile profilePage={state.profilePage}
+                                                              dispatch={props.store.dispatch.bind(props.store)}
+                />}/>
+                {/*<Route path='/profile' render={() => <Profile profilePage={state.profilePage}
                                                               addPost={props.store.addPost.bind(props.store)}
-                                                              changeNewTextCallback={props.store.changeNewText.bind(props.store)}/>}/>
+                                                              changeNewTextCallback={props.store.changeNewText.bind(props.store)}/>}/>*/}
                 <Route path='/news' render={() => <News/>}/>
                 <Route path='/music' render={() => <Music/>}/>
                 <Route path='/settings' render={() => <Settings/>}/>

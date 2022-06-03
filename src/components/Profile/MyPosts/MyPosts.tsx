@@ -1,6 +1,7 @@
 import React from "react";
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
+import {ActionType, addPostAC, changeNewTextAC} from "../../../redux/state";
 
 type PostsType = {
     id: number
@@ -9,9 +10,10 @@ type PostsType = {
 }
 type PostPropsType = {
     posts: Array<PostsType>
-    newPostText:string
-    addPost:()=>void
-    changeNewTextCallback:(newText:string)=>void
+    dispatch: (action: ActionType) => void
+    newPostText: string
+    // addPost:()=>void
+    // changeNewTextCallback:(newText:string)=>void
 }
 
 const MyPosts = (props: PostPropsType) => {
@@ -23,17 +25,28 @@ const MyPosts = (props: PostPropsType) => {
         // let text = newPostElement.current?.value;
         // if(newPostElement.current) {
         //     let text = newPostElement.current.value;
-            props.addPost()
-            // newPostElement.current.value = '';
-            // props.changeNewTextCallback('')
+
+
+        // props.addPost()
+        props.dispatch(addPostAC())
+
+
+        // newPostElement.current.value = '';
+        // props.changeNewTextCallback('')
         // }
     }
-    const newTextChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>)=>{
-        props.changeNewTextCallback(e.currentTarget.value)
+    const newTextChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+
+        // props.changeNewTextCallback(e.currentTarget.value)
+        // let action = {type:'UPDATE-NEW-POST-TEXT',text:e.currentTarget.value};
+        let action = changeNewTextAC(e.currentTarget.value);
+
+        props.dispatch(action)
     }
 
     return (
         <div className={s.myposts}>
+
             <h3>My posts</h3>
             <div className={s.postInput}>
                 <div>
