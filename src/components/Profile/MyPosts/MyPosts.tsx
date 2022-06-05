@@ -1,7 +1,8 @@
 import React from "react";
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {ActionType, addPostAC, changeNewTextAC} from "../../../redux/state";
+import {addPostAC, changeNewTextAC} from "../../../redux/profile-reducer";
+import { ActionType } from "../../../redux/state";
 
 type PostsType = {
     id: number
