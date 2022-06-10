@@ -2,7 +2,7 @@ import React from "react";
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
 import {addPostAC, changeNewTextAC} from "../../../redux/profile-reducer";
-import { ActionType } from "../../../redux/state";
+import {ActionType} from "../../../redux/store";
 
 type PostsType = {
     id: number
@@ -11,10 +11,9 @@ type PostsType = {
 }
 type PostPropsType = {
     posts: Array<PostsType>
-    dispatch: (action: ActionType) => void
     newPostText: string
-    // addPost:()=>void
-    // changeNewTextCallback:(newText:string)=>void
+    addPost: () => void
+    changeNewTextCallback: (newText: string) => void
 }
 
 const MyPosts = (props: PostPropsType) => {
@@ -23,26 +22,10 @@ const MyPosts = (props: PostPropsType) => {
 
     let newPostElement = React.createRef<HTMLTextAreaElement>();
     const addPost = () => {
-        // let text = newPostElement.current?.value;
-        // if(newPostElement.current) {
-        //     let text = newPostElement.current.value;
-
-
-        // props.addPost()
-        props.dispatch(addPostAC())
-
-
-        // newPostElement.current.value = '';
-        // props.changeNewTextCallback('')
-        // }
+        props.addPost()
     }
     const newTextChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-
-        // props.changeNewTextCallback(e.currentTarget.value)
-        // let action = {type:'UPDATE-NEW-POST-TEXT',text:e.currentTarget.value};
-        let action = changeNewTextAC(e.currentTarget.value);
-
-        props.dispatch(action)
+        props.changeNewTextCallback(e.currentTarget.value)
     }
 
     return (

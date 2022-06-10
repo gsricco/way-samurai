@@ -1,12 +1,22 @@
 import React from 'react';
-import {ActionType, StoreType} from "./state";
+import {ActionType} from "./store";
 import {PostsType, ProfilePageType} from "../App";
 
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
-const profileReducer = (state:ProfilePageType, action:ActionType) => {
+let initialState = {
+    posts: [
+        {id: 1, message: 'First post', likesCount: 11},
+        {id: 2, message: 'Hello samurai', likesCount: 25},
+        {id: 2, message: 'Dobro pzl', likesCount: 5},
+        {id: 4, message: 'Pole dur', likesCount: 25},
+    ],
+    newPostText: 'IT-text',
+};
+
+const profileReducer = (state: ProfilePageType = initialState, action: ActionType) => {
     switch (action.type) {
         case ADD_POST:
             const newPost: PostsType = {
@@ -14,15 +24,16 @@ const profileReducer = (state:ProfilePageType, action:ActionType) => {
                 message: state.newPostText,
                 likesCount: 0
             };
-               state.posts.push(newPost);
-                state.newPostText = '';
+            state.posts.push(newPost);
+            state.newPostText = '';
             return state;
         case UPDATE_NEW_POST_TEXT:
             state.newPostText = action.newText;
             return state;
         default:
             return state;
-    };
+    }
+    ;
 }
 
 
