@@ -9,6 +9,7 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import {StoreType} from "./redux/store";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
+import StoreContext from "./StoreContext";
 
 export type MessagesType = {
     id: number
@@ -47,49 +48,55 @@ export type StateType = {
     dialogsPage: DialogsPageType
     sideBar: SideBarPageType
 }
-type AppPropsType = {
-    store: StoreType
-    // state:StateType
-    // addPost:()=>void
-    // changeNewText:(newText:string)=>void
-}
+// type AppPropsType = {
+//     store: StoreType
+//     // state:StateType
+//     // addPost:()=>void
+//     // changeNewText:(newText:string)=>void
+// }
 
 
-function App(props: AppPropsType) {
-    const state = props.store.getState();
+function App() {
+    // const state = props.store.getState();
 
     return (
-        <div className='app-wrapper'>
-            <Header/>
-            <Navbar sideBar={state.sideBar}/>
-            <div className='app-wrapper-content'>
-                {/* <Route path='/dialogs' component={Dialogs}/>
+        <StoreContext.Consumer>
+            { (store)=> {
+                const state = store.getState();
+                return(
+                <div className='app-wrapper'>
+                    <Header/>
+                    <Navbar sideBar={state.sideBar}/>
+                    <div className='app-wrapper-content'>
+                        {/* <Route path='/dialogs' component={Dialogs}/>
                     <Route path='/profile' component={Profile}/>
                     <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>
                     <Route path='/settings' component={Settings}/>*/}
 
-                <Route path='/dialogs' render={() => <DialogsContainer store={props.store}/>}/>
+                        <Route path='/dialogs' render={() => <DialogsContainer/>}/>
+                        <Route path='/profile' render={() => <Profile/>}/>
+                        {/*<Route path='/dialogs' render={() => <DialogsContainer store={props.store}/>}/>*/}
+                        {/*                <Route path='/profile' render={() => <Profile store={props.store}/>}/>*/}
 
-                <Route path='/profile' render={() => <Profile store={props.store}/>}/>
-
-                {/*<Route path='/dialogs' render={() => <Dialogs state={state.dialogsPage}
+                        {/*<Route path='/dialogs' render={() => <Dialogs state={state.dialogsPage}
                                                               dispatch={props.store.dispatch.bind(props.store)}/>}/>
 
                 <Route path='/profile' render={() => <Profile profilePage={state.profilePage}
                                                               dispatch={props.store.dispatch.bind(props.store)}
                 />}/>*/}
-                {/*<Route path='/profile' render={() => <Profile profilePage={state.profilePage}
+                        {/*<Route path='/profile' render={() => <Profile profilePage={state.profilePage}
                                                               addPost={props.store.addPost.bind(props.store)}
                                                               changeNewTextCallback={props.store.changeNewText.bind(props.store)}/>}/>*/}
-                <Route path='/news' render={() => <News/>}/>
-                <Route path='/music' render={() => <Music/>}/>
-                <Route path='/settings' render={() => <Settings/>}/>
+                        <Route path='/news' render={() => <News/>}/>
+                        <Route path='/music' render={() => <Music/>}/>
+                        <Route path='/settings' render={() => <Settings/>}/>
 
 
-            </div>
-        </div>
-
+                    </div>
+                </div>)
+            }}
+        </StoreContext.Consumer>
     );
 }
 
