@@ -4,18 +4,18 @@ import {NavLink} from "react-router-dom";
 import {SideBarPageType} from "../../App";
 
 type NavbarPropsType = {
-    sideBar: SideBarPageType
+    sideBar?: SideBarPageType
 }
 
 const Navbar = (props: NavbarPropsType) => {
-    const freindsElement = props.sideBar.friends.map((f) => {
+    const freindsElement = props.sideBar?.friends.map((f) => {
         return (
             <div className={s.friends}>
                 <div className={s.avatarFr}><img src={f.avatar} alt="avatar"/></div>
                 <div className={s.nameFr}><span>{f.name}</span></div>
             </div>
         )
-    })
+    }) ||[]
     return (
         <nav className={s.nav}>
             <div className={s.item }>

@@ -8,8 +8,7 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import {StoreType} from "./redux/store";
-import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
-import StoreContext from "./StoreContext";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 export type MessagesType = {
     id: number
@@ -57,16 +56,14 @@ export type StateType = {
 
 
 function App() {
-    // const state = props.store.getState();
+    // const state = store.getState();
 
-    return (
-        <StoreContext.Consumer>
-            { (store)=> {
-                const state = store.getState();
+
                 return(
                 <div className='app-wrapper'>
                     <Header/>
-                    <Navbar sideBar={state.sideBar}/>
+                    {/*<Navbar sideBar={state.sideBar}/>*/}
+                    <Navbar />
                     <div className='app-wrapper-content'>
                         {/* <Route path='/dialogs' component={Dialogs}/>
                     <Route path='/profile' component={Profile}/>
@@ -95,9 +92,7 @@ function App() {
 
                     </div>
                 </div>)
-            }}
-        </StoreContext.Consumer>
-    );
+
 }
 
 export default App;

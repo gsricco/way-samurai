@@ -30,11 +30,6 @@ type UpdateActionType={
 }
 type UpdateActionType=ReturnType<typeof changeNewTextAC>*/
 
-
-
-
-
-
 export const store: StoreType = {
     _state: {
         profilePage: {
