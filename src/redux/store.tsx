@@ -2,6 +2,7 @@ import {StateType} from "../App";
 import profileReducer, {addPostAC, changeNewTextAC} from "./profile-reducer";
 import dialogsReducer, {sendMessageAC, updateNewMessageAC} from "./dialogs-reducer";
 import sideBarReducer from "./sidebar-reducer";
+import {followAC, setUsersAC, unfollowAC} from "./users-reducer";
 
 export type StoreType = {
     _state: StateType
@@ -17,6 +18,10 @@ export type ActionType =
     | ReturnType<typeof changeNewTextAC>
     | ReturnType<typeof updateNewMessageAC>
     | ReturnType<typeof sendMessageAC>
+    | ReturnType<typeof followAC>
+    | ReturnType<typeof unfollowAC>
+    | ReturnType<typeof setUsersAC>
+
 
 /*type AddPostActionType={
     type:'ADD-POST'

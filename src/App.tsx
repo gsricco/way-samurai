@@ -7,8 +7,8 @@ import {Route} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {StoreType} from "./redux/store";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 
 export type MessagesType = {
     id: number
@@ -47,52 +47,26 @@ export type StateType = {
     dialogsPage: DialogsPageType
     sideBar: SideBarPageType
 }
-// type AppPropsType = {
-//     store: StoreType
-//     // state:StateType
-//     // addPost:()=>void
-//     // changeNewText:(newText:string)=>void
-// }
-
 
 function App() {
-    // const state = store.getState();
 
+    return (
+        <div className='app-wrapper'>
+            <Header/>
+            {/*<Navbar sideBar={state.sideBar}/>*/}
+            <Navbar/>
+            <div className='app-wrapper-content'>
+                <Route path='/dialogs' render={() => <DialogsContainer/>}/>
+                <Route path='/profile' render={() => <Profile/>}/>
+                <Route path='/news' render={() => <News/>}/>
+                <Route path='/music' render={() => <Music/>}/>
+                <Route path='/settings' render={() => <Settings/>}/>
 
-                return(
-                <div className='app-wrapper'>
-                    <Header/>
-                    {/*<Navbar sideBar={state.sideBar}/>*/}
-                    <Navbar />
-                    <div className='app-wrapper-content'>
-                        {/* <Route path='/dialogs' component={Dialogs}/>
-                    <Route path='/profile' component={Profile}/>
-                    <Route path='/news' component={News}/>
-                    <Route path='/music' component={Music}/>
-                    <Route path='/settings' component={Settings}/>*/}
+                <Route path='/users' render={() => <UsersContainer/>}/>
 
-                        <Route path='/dialogs' render={() => <DialogsContainer/>}/>
-                        <Route path='/profile' render={() => <Profile/>}/>
-                        {/*<Route path='/dialogs' render={() => <DialogsContainer store={props.store}/>}/>*/}
-                        {/*                <Route path='/profile' render={() => <Profile store={props.store}/>}/>*/}
-
-                        {/*<Route path='/dialogs' render={() => <Dialogs state={state.dialogsPage}
-                                                              dispatch={props.store.dispatch.bind(props.store)}/>}/>
-
-                <Route path='/profile' render={() => <Profile profilePage={state.profilePage}
-                                                              dispatch={props.store.dispatch.bind(props.store)}
-                />}/>*/}
-                        {/*<Route path='/profile' render={() => <Profile profilePage={state.profilePage}
-                                                              addPost={props.store.addPost.bind(props.store)}
-                                                              changeNewTextCallback={props.store.changeNewText.bind(props.store)}/>}/>*/}
-                        <Route path='/news' render={() => <News/>}/>
-                        <Route path='/music' render={() => <Music/>}/>
-                        <Route path='/settings' render={() => <Settings/>}/>
-
-
-                    </div>
-                </div>)
-
+            </div>
+        </div>
+    )
 }
 
 export default App;

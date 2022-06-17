@@ -15,10 +15,10 @@ const Navbar = (props: NavbarPropsType) => {
                 <div className={s.nameFr}><span>{f.name}</span></div>
             </div>
         )
-    }) ||[]
+    }) || []
     return (
         <nav className={s.nav}>
-            <div className={s.item }>
+            <div className={s.item}>
                 <NavLink to='/profile' activeClassName={s.activeLink}>Profile</NavLink>
             </div>
             <div className={s.item}>
@@ -32,6 +32,9 @@ const Navbar = (props: NavbarPropsType) => {
             </div>
             <div className={s.item}>
                 <NavLink to='/settings' activeClassName={s.activeLink}>Settings</NavLink>
+            </div>
+            <div className={s.item}>
+                <NavLink to='/users' activeClassName={s.activeLink}>Users</NavLink>
             </div>
             <div className={s.sideBar}>
                 <span>Friends:</span>
