@@ -3,9 +3,12 @@ import {ActionType} from "./store";
 
 export type UserType = {
     id: number,
-    photoUrl: string,
+    photos: {
+        "small": string|null,
+        "large": string|null
+    },
     followed: boolean,
-    fullname: string,
+    name: string,
     status: string,
     location: { city: string, country: string }
 }
