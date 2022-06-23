@@ -7,7 +7,7 @@ import {AppStateType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
 
 
-type mapStatePropsType = {
+export type mapStatePropsType = {
     users: Array<UserType>
 }
 
