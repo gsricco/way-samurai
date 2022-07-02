@@ -24,14 +24,13 @@ const Users = (props:UsersApiPropsType) => {
     }
     return (
         <div>
-            <div>
+            <div className={s.pagesNumber}>
                 {pages.map(p => {
                     return <span onClick={(e) => {
                         props.onPageChanged(p)
                     }} className={props.currentPage === p ? s.selectedPage : ""}>{p}</span>
                 })}
             </div>
-            {/*<button onClick={this.getUsers}>Get Users</button>*/}
             {
                 props.users.map(el => <div key={el.id}>
                     <span>

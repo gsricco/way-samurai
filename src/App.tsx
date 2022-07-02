@@ -53,7 +53,6 @@ function App() {
     return (
         <div className='app-wrapper'>
             <Header/>
-            {/*<Navbar sideBar={state.sideBar}/>*/}
             <Navbar/>
             <div className='app-wrapper-content'>
                 <Route path='/dialogs' render={() => <DialogsContainer/>}/>
@@ -61,9 +60,7 @@ function App() {
                 <Route path='/news' render={() => <News/>}/>
                 <Route path='/music' render={() => <Music/>}/>
                 <Route path='/settings' render={() => <Settings/>}/>
-
                 <Route path='/users' render={() => <UsersContainer/>}/>
-
             </div>
         </div>
     )

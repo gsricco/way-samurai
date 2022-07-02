@@ -3,6 +3,11 @@
     height: 50px;
     border-radius: 50%;
 }
+.pagesNumber span{
+    margin: 2px;
+}
 .selectedPage{
+    color: cyan;
     font-weight: bold;
+    padding: 5px;
 }

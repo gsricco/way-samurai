@@ -2,12 +2,17 @@ import {StateType} from "../App";
 import profileReducer, {addPostAC, changeNewTextAC} from "./profile-reducer";
 import dialogsReducer, {sendMessageAC, updateNewMessageAC} from "./dialogs-reducer";
 import sideBarReducer from "./sidebar-reducer";
-import {followAC, setCurrentPageAC, setUsersAC, setUsersTotalCountAC, unfollowAC} from "./users-reducer";
+import {
+    followAC,
+    setCurrentPageAC,
+    setUsersAC,
+    setUsersTotalCountAC,
+    toggleIsFetchingAC,
+    unfollowAC
+} from "./users-reducer";
 
 export type StoreType = {
     _state: StateType
-    // changeNewText:(newText:string)=>void
-    // addPost:()=>void
     _onChange: () => void
     subscribe: (callback: () => void) => void
     getState: () => StateType
@@ -23,24 +28,12 @@ export type ActionType =
     | ReturnType<typeof setUsersAC>
     | ReturnType<typeof setCurrentPageAC>
     | ReturnType<typeof setUsersTotalCountAC>
+    | ReturnType<typeof toggleIsFetchingAC>
 
-
-/*type AddPostActionType={
-    type:'ADD-POST'
-    // newText:string
-}
-type AddPostActionType=ReturnType<typeof addPostAC>
-
-type UpdateActionType={
-    type:'UPDATE-NEW-POST-TEXT'
-    newText:string
-}
-type UpdateActionType=ReturnType<typeof changeNewTextAC>*/
 
 export const store: StoreType = {
     _state: {
         profilePage: {
-            // messageForNewPost:'',
             posts: [
                 {id: 1, message: 'First post', likesCount: 11},
                 {id: 2, message: 'Hello samurai', likesCount: 25},
@@ -115,22 +108,6 @@ export const store: StoreType = {
             ]
         }
     },
-    /*changeNewText (newText:string) {
-        this._state.profilePage.newPostText = newText;
-        this._onChange();
-    },
-    addPost (){
-        const newPost:PostsType = {
-            id:5,
-            message: this._state.profilePage.newPostText,
-            likesCount: 0
-        }
-        if(this._state.profilePage.newPostText) {
-            this._state.profilePage.posts.push(newPost);
-            this._state.profilePage.newPostText = '';
-            this._onChange();
-        }
-    },*/
     _onChange() {
         console.log('State changed');
     },
