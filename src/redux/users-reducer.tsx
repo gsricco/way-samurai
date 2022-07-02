@@ -24,7 +24,7 @@ const initialState: InitialStateType = {
     users: [] as Array<UserType>,
     pagesSize:10,
     totalUsersCount:0,
-    currentPage:5
+    currentPage:1
 };
 
 const FOLLOW = 'FOLLOW';
