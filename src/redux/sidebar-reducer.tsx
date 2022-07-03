@@ -1,6 +1,6 @@
 import React from 'react';
-import {ActionType} from "./store";
 import {SideBarPageType} from "../App";
+import {ActionType} from "./redux-store";
 
 
 let initialState = {
@@ -23,7 +23,7 @@ let initialState = {
     ]
 }
 
-const sideBarReducer = (state: SideBarPageType = initialState, action: ActionType) => {
+const sideBarReducer = (state: SideBarPageType = initialState, action: ActionType):SideBarPageType => {
     return state;
 };
 

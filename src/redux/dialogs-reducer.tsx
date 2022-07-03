@@ -1,6 +1,7 @@
 import React from 'react';
-import {ActionType} from "./store";
+
 import {DialogsPageType} from "../App";
+import {ActionType} from "./redux-store";
 
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 const SEND_MESSAGE = 'SEND_MESSAGE';
@@ -52,7 +53,7 @@ let initialState = {
         newMessageBody: '',
     };
 
-const dialogsReducer = (state:DialogsPageType=initialState, action:ActionType) => {
+const dialogsReducer = (state:DialogsPageType=initialState, action:ActionType):DialogsPageType => {
     switch (action.type){
         case UPDATE_NEW_MESSAGE_BODY:
             return {

@@ -1,5 +1,6 @@
 import React from 'react';
-import {ActionType} from "./store";
+import {ActionType} from "./redux-store";
+
 
 export type UserType = {
     id: number,

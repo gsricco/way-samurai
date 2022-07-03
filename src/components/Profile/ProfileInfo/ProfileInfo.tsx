@@ -1,7 +1,17 @@
 import React from 'react';
 import s from "../Profile.module.css";
+import {Preloader} from "../../common/Preloader/Preloader";
+import photoUser from '../../../assets/images/user.png'
+import {ProfileType} from "../../../redux/profile-reducer";
 
-const ProfileInfo = () => {
+type ProfileInfoPropsType = {
+    profile:null|ProfileType
+}
+
+const ProfileInfo = (props:ProfileInfoPropsType) => {
+    if (!props.profile) {
+        return <Preloader/>
+    }
     return (
         <div>
             <div>
@@ -11,10 +21,10 @@ const ProfileInfo = () => {
             </div>
             <div className={s.avatar}>
                 <img className={s.avatarImg}
-                     src="https://oops.ru/wp-content/uploads/2021/02/dzheyms-kemeron-vypustit-komiksy-po-motivam-avatara.jpg"
+                     src={props.profile.photos.large||photoUser}
                      alt=""/>
-                <div>Avatar Name</div>
-                <div>Description</div>
+                <div className={s.avatarName}>{props.profile.fullName}</div>
+                <div className={s.descriptionUser}>{props.profile.aboutMe}</div>
             </div>
         </div>
     );
