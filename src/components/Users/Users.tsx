@@ -24,7 +24,7 @@ const Users = (props:UsersApiPropsType) => {
         pages.push(i)
     }
     return (
-        <div>
+        <div className={s.usersContainer}>
             <div className={s.pagesNumber}>
                 {pages.map(p => {
                     return <span onClick={(e) => {

@@ -1,11 +1,19 @@
+
 .photo{
     width: 50px;
     height: 50px;
     border-radius: 50%;
 }
-.pagesNumber span{
-    margin: 2px;
+.usersContainer{
+    width: 800px;
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis; !* Добавляем многоточие *!*/
 }
+.pagesNumber span{
+   margin: 2px;
+
+}
+
 .selectedPage{
     color: cyan;
     font-weight: bold;
