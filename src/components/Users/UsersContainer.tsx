@@ -5,16 +5,15 @@ import {
     setCurrentPageAC,
     setUsersAC,
     setUsersTotalCountAC,
+    toggleFollowingProgress,
     toggleIsFetchingAC,
     unfollowAC,
     UserType
 } from "../../redux/users-reducer";
 import {AppStateType} from "../../redux/redux-store";
-import axios from "axios";
 import Users from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
 import {userAPI} from "../../api/api";
-
 
 
 class UsersContainer extends React.Component<UsersPropsType> {
@@ -52,6 +51,8 @@ class UsersContainer extends React.Component<UsersPropsType> {
                 users={this.props.users}
                 follow={this.props.follow}
                 unfollow={this.props.unfollow}
+                toggleFollowingProgress={this.props.toggleFollowingProgress}
+                followingInProgress={this.props.followingInProgress}
             />
         </>
     }
@@ -64,6 +65,8 @@ export type mapStatePropsType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+    // followingInProgress: Array<boolean>
+    followingInProgress: Array<number>
 }
 
 export type UsersPropsType = mapStatePropsType & mapDispatchPropsType
@@ -74,7 +77,8 @@ let mapStateToProps = (state: AppStateType): mapStatePropsType => {
         pagesSize: state.usersPage.pagesSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress
     }
 }
 
@@ -85,6 +89,8 @@ type mapDispatchPropsType = {
     setTotalUsersCount: (totalUsersCount: number) => void
     setCurrentPage: (currentPage: number) => void
     toggleIsFetching:(isFetching:boolean)=>void
+    toggleFollowingProgress:(isFetching:boolean,userId:number)=>void
+
 }
 
 
@@ -94,5 +100,6 @@ export default connect(mapStateToProps, {
     setUsers: setUsersAC,
     setCurrentPage: setCurrentPageAC,
     setTotalUsersCount: setUsersTotalCountAC,
-    toggleIsFetching:toggleIsFetchingAC
+    toggleIsFetching:toggleIsFetchingAC,
+    toggleFollowingProgress:toggleFollowingProgress,
 })(UsersContainer);

@@ -6,7 +6,7 @@ import usersReducer, {
     followAC,
     setCurrentPageAC,
     setUsersAC,
-    setUsersTotalCountAC,
+    setUsersTotalCountAC, toggleFollowingProgress,
     toggleIsFetchingAC,
     unfollowAC
 } from "./users-reducer";
@@ -26,6 +26,7 @@ export type ActionType =
     | ReturnType<typeof toggleIsFetchingAC>
     | ReturnType<typeof setUsersProfile>
     | ReturnType<typeof setAuthUserData>
+    | ReturnType<typeof toggleFollowingProgress>
 
 let rootReducer = combineReducers({
     profilePage:profileReducer,

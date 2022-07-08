@@ -5,20 +5,18 @@ import {ActionType} from "./redux-store";
 const SET_USER_DATA = 'SET_USER_DATA';
 
 export type InitialStateType = {
-    id: number|null,
-    email: string|null,
-    login: string|null,
-    isAuth:boolean
+    id: number | null,
+    email: string | null,
+    login: string | null,
+    isAuth: boolean
 };
 
-const initialState:InitialStateType = {
+const initialState: InitialStateType = {
     id: null,
     email: null,
     login: null,
-    isAuth:false
+    isAuth: false
 };
-
-
 
 
 const authReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
@@ -27,7 +25,7 @@ const authReducer = (state: InitialStateType = initialState, action: ActionType)
             return {
                 ...state,
                 ...action.data,
-                isAuth:true
+                isAuth: true
             }
 
 
@@ -37,7 +35,10 @@ const authReducer = (state: InitialStateType = initialState, action: ActionType)
 }
 
 
-export const setAuthUserData = (userId: number,email:string,login:string) => ({type: SET_USER_DATA,data:{userId,email,login}} as const)
+export const setAuthUserData = (userId: number, email: string, login: string) => ({
+    type: SET_USER_DATA,
+    data: {userId, email, login}
+} as const)
 
 
 export default authReducer;
