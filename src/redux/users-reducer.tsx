@@ -1,5 +1,10 @@
 import React from 'react';
 import {ActionType} from "./redux-store";
+import {authAPI, userAPI} from "../api/api";
+import {mapDispatchPropsType, UsersPropsType} from "../components/Users/UsersContainer";
+import {Dispatch} from "redux";
+import {setAuthUserData} from "./auth-reducer";
+import {setUsersProfile} from "./profile-reducer";
 
 
 export type UserType = {
@@ -96,5 +101,75 @@ export const toggleFollowingProgress = (isFetching: boolean, userId: number) => 
     type: TOGGLE_IS_FOLLOWING_PROGRESS,
     isFetching, userId
 } as const)
+
+
+export const getUsersThunkCreator = (currentPage: number, pagesSize: number) => {
+    return (dispatch: Dispatch) => {
+
+        dispatch(toggleIsFetchingAC(true));
+
+        userAPI.getUsers(currentPage, pagesSize).then(data => {
+
+            dispatch(toggleIsFetchingAC(false));
+            dispatch(setUsersAC(data.items));
+            dispatch(setUsersTotalCountAC(data.totalCount));
+            dispatch(setCurrentPageAC(currentPage))
+        });
+    }
+}
+
+export const follow = (userId: number) => {
+    return (dispatch: Dispatch) => {
+
+        dispatch(toggleFollowingProgress(true, userId));
+
+
+        userAPI.follow(userId)
+            .then(data => { //response.data  -> { resultCode, data, message }
+                if (data.resultCode == 0) {
+                    dispatch(followAC(userId))
+                }
+                dispatch(toggleFollowingProgress(false, userId));
+            });
+    }
+}
+export const unfollow = (userId: number) => {
+    return (dispatch: Dispatch) => {
+
+        dispatch(toggleFollowingProgress(true, userId));
+
+
+        userAPI.unfollow(userId)
+            .then(data => { //response.data  -> { resultCode, data, message }
+                if (data.resultCode == 0) {
+                    dispatch(unfollowAC(userId))
+                }
+                dispatch(toggleFollowingProgress(false, userId));
+            });
+    }
+}
+
+// export const setAuthUserDataThunkCreator = () => {
+//     return (dispatch: Dispatch) => {
+//         authAPI.me()
+//             .then(response => {
+//                     if (response.data.resultCode === 0) {
+//                         let {id, login, email} = response.data.data;
+//                         dispatch(setAuthUserData(id, email, login))
+//                         // console.log(id,email,login)
+//                     }
+//                 });
+//     }
+// }
+
+// export const setUsersProfileThunkCreator = (userId: number) => {
+//     return (dispatch: Dispatch) => {
+//         userAPI.setUsersProfile(userId)
+//             .then(response => {
+//                         dispatch(setUsersProfile(response.data));
+//                     });
+//     }
+// }
+
 
 export default usersReducer;

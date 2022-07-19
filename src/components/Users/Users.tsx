@@ -14,7 +14,7 @@ export type UsersApiPropsType = {
     onPageChanged:(pageNumber:number)=>void
     follow: (userId: number) => void
     unfollow: (userId: number) => void
-    toggleFollowingProgress:(isFetching:boolean,userId:number)=>void
+    // toggleFollowingProgress:(isFetching:boolean,userId:number)=>void
     followingInProgress:Array<number>
 }
 
@@ -47,8 +47,8 @@ const Users = (props:UsersApiPropsType) => {
                         <div>
                             {el.followed
                                 ? <button disabled={props.followingInProgress.some(id=>id===el.id)} onClick={() => {
-                                    props.toggleFollowingProgress(true,el.id);
-                                    userAPI.deleteUsers(el.id)
+                                    props.unfollow(el.id);
+                                    /*userAPI.unfollow(el.id)
                                     // axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${el.id}`,{
                                     //     withCredentials:true,
                                     //     headers:{
@@ -60,24 +60,24 @@ const Users = (props:UsersApiPropsType) => {
                                                 props.unfollow(el.id)
                                             }
                                             props.toggleFollowingProgress(false,el.id);
-                                        });
+                                        });*/
 
                                 }}>UnFollow</button>
                                 : <button disabled={props.followingInProgress.some(id => id === el.id)} onClick={() => {
-                                    props.toggleFollowingProgress(true,el.id);
+                                    props.follow(el.id);
                                     // axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${el.id}`,{},{
                                     //     withCredentials:true,
                                     //     headers:{
                                     //         'API-KEY':'0a6bf10a-0783-484b-91da-65d7e9fda051'
                                     //     }
                                     // })
-                                    userAPI.postUsers(el.id)
-                                        .then(data => { //response.data  -> { resultCode, data, message }
-                                            if(data.resultCode==0) {
-                                                props.follow(el.id)
-                                            }
-                                            props.toggleFollowingProgress(false,el.id);
-                                        });
+                                    // userAPI.follow(el.id)
+                                    //     .then(data => { //response.data  -> { resultCode, data, message }
+                                    //         if(data.resultCode==0) {
+                                    //             props.follow(el.id)
+                                    //         }
+                                    //         props.toggleFollowingProgress(false,el.id);
+                                    //     });
 
                                 }}>Follow</button>}
                         </div>

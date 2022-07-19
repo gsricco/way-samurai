@@ -1,4 +1,4 @@
-import {combineReducers, legacy_createStore} from "redux";
+import {applyMiddleware, combineReducers, legacy_createStore} from "redux";
 import profileReducer, {addPostAC, changeNewTextAC, setUsersProfile} from "./profile-reducer";
 import dialogsReducer, {sendMessageAC, updateNewMessageAC} from "./dialogs-reducer";
 import sideBarReducer from "./sidebar-reducer";
@@ -11,7 +11,7 @@ import usersReducer, {
     unfollowAC
 } from "./users-reducer";
 import authReducer, {setAuthUserData} from "./auth-reducer";
-
+import thunkMiddleware from 'redux-thunk'
 
 export type ActionType =
     ReturnType<typeof addPostAC>
@@ -39,7 +39,7 @@ let rootReducer = combineReducers({
 
 export type AppStateType = ReturnType<typeof rootReducer>
 
-export let store=legacy_createStore(rootReducer);
+export let store=legacy_createStore(rootReducer,applyMiddleware(thunkMiddleware));
 //@ts-ignore
 window.store = store;
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import {PostsType, ProfilePageType} from "../App";
 import {ActionType} from "./redux-store";
+import {Dispatch} from "redux";
+import {userAPI} from "../api/api";
 
 
 const ADD_POST = 'ADD-POST';
@@ -75,9 +77,20 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionTyp
 
 export const addPostAC = () => ({type: ADD_POST} as const)
 export const setUsersProfile = (profile:ProfileType) => ({type: SET_USER_PROFILE,profile} as const)
+
 export const changeNewTextAC = (newText: string) => ({
     type: UPDATE_NEW_POST_TEXT,
     newText: newText
 } as const)
+
+export const getUsersProfileThunkCreator = (userId:number) => (dispatch:Dispatch)=>{
+    userAPI.getUsersProfile(userId)
+        .then(response => {
+            dispatch(setUsersProfile(response.data));
+        });
+}
+
+
+
 
 export default profileReducer;

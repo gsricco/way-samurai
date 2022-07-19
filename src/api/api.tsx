@@ -15,19 +15,25 @@ export const userAPI = {
         return instance.get(`users?page=${currentPage}&count=${pagesSize}`)
             .then(response => response.data);
     },
-    deleteUsers(id: number) {
+    unfollow(id: number) {
         return instance.delete(`follow/${id}`)
             .then(response => response.data);
     },
-    postUsers(id: number) {
+    follow(id: number) {
         return instance.post(`follow/${id}`)
             .then(response => response.data);
+    },
+    // setAuthUserData(){
+    //     return instance.get('auth/me')
+    // },
+    getUsersProfile(id:number){
+        return instance.get(`profile/${id}`)
     }
+
 }
 
-// export const deleteUsers = (id= 0) =>{
-//    return instance.delete(`follow/${id}`)
-// }
-// export const postUsers = (id= 0) =>{
-//    return instance.post(`follow/${id}`)
-// }
+export const authAPI = {
+    me(){
+        return instance.get('auth/me')
+    }
+}
