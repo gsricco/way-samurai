@@ -7,9 +7,13 @@ type MapStatePropsTypeRedirect = {
     isAuth:boolean
 }
 
-let mapStateToPropsForRedirect = (state: AppStateType):MapStatePropsTypeRedirect => ({
+const mapStateToPropsForRedirect = (state: AppStateType):MapStatePropsTypeRedirect => ({
     isAuth:state.auth.isAuth
 });
+
+// const mapStateToProps = (state: AppStateType): MapStatePropsTypeRedirect => ({
+//     isAuth: state.auth.isAuth
+// })
 
 // export function withAuthRedirect <WCP>(Component:React.ComponentType<WCP>) {
 //
@@ -23,6 +27,11 @@ let mapStateToPropsForRedirect = (state: AppStateType):MapStatePropsTypeRedirect
 //     return ConnectedAuthRedirectComponent;
 // };
 
+//ТИПИЗАЦИЯ
+// Используем НЕ стрелочную функцию
+//<WCP>(Component: React.ComponentType<WCP>) можно <WCP> заменить на <T>
+//():MapStatePropsTypeRedirect
+//...restProps as WCP
 
 export function withAuthRedirect<WCP>(Component: React.ComponentType<WCP>) {
 
@@ -33,8 +42,6 @@ export function withAuthRedirect<WCP>(Component: React.ComponentType<WCP>) {
         return <Component {...restProps as WCP}/>
     }
 
-    const mapStateToProps = (state: AppStateType): MapStatePropsTypeRedirect => ({
-        isAuth: state.auth.isAuth
-    })
-    return connect<MapStatePropsTypeRedirect, {}, WCP, AppStateType>(mapStateToProps)(RedirectComponent)
+
+    return connect<MapStatePropsTypeRedirect, {}, WCP, AppStateType>(mapStateToPropsForRedirect)(RedirectComponent)
 }
