@@ -12,6 +12,7 @@ import usersReducer, {
 } from "./users-reducer";
 import authReducer, {setAuthUserData} from "./auth-reducer";
 import thunkMiddleware from 'redux-thunk'
+import friendsReducer, {setStatus, setUsers} from "./friends-reducer";
 
 export type ActionType =
     ReturnType<typeof addPostAC>
@@ -27,19 +28,22 @@ export type ActionType =
     | ReturnType<typeof setUsersProfile>
     | ReturnType<typeof setAuthUserData>
     | ReturnType<typeof toggleFollowingProgress>
+    | ReturnType<typeof setUsers>
+    | ReturnType<typeof setStatus>
 
 let rootReducer = combineReducers({
-    profilePage:profileReducer,
-    dialogsPage:dialogsReducer,
-    sideBar:sideBarReducer,
-    usersPage:usersReducer,
-    auth:authReducer
+    profilePage: profileReducer,
+    dialogsPage: dialogsReducer,
+    sideBar: sideBarReducer,
+    usersPage: usersReducer,
+    auth: authReducer,
+    friends: friendsReducer
 
 });
 
 export type AppStateType = ReturnType<typeof rootReducer>
 
-export let store=legacy_createStore(rootReducer,applyMiddleware(thunkMiddleware));
+export let store = legacy_createStore(rootReducer, applyMiddleware(thunkMiddleware));
 //@ts-ignore
 window.store = store;
 

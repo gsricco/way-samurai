@@ -11,6 +11,7 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import {ProfileType} from "./redux/profile-reducer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
+import Friends from "./components/Users/Friends";
 
 export type MessagesType = {
     id: number
@@ -65,6 +66,7 @@ function App() {
                 <Route path='/settings' render={() => <Settings/>}/>
                 <Route path='/users' render={() => <UsersContainer/>}/>
                 <Route path='/login' render={() => <Login/>}/>
+                {/*<Route path='/friends' render={() => <Friends />}/>*/}
             </div>
         </div>
     )
