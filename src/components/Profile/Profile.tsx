@@ -4,13 +4,18 @@ import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import {ProfileType} from "../../redux/profile-reducer";
 
 type ProfilePropsType = {
-    profile:null|ProfileType
+    profile: null | ProfileType
+    status: string
+    updateStatusThunkCreator: (status: string) => void
 }
 
-const Profile = (props:ProfilePropsType) => {
+const Profile = (props: ProfilePropsType) => {
     return (
         <div>
-            <ProfileInfo profile={props.profile}/>
+            <ProfileInfo
+                profile={props.profile}
+                status={props.status}
+                updateStatusThunkCreator={props.updateStatusThunkCreator}/>
             <MyPostsContainer/>
         </div>
     )

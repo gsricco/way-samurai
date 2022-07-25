@@ -1,5 +1,5 @@
 import {applyMiddleware, combineReducers, legacy_createStore} from "redux";
-import profileReducer, {addPostAC, changeNewTextAC, setUsersProfile} from "./profile-reducer";
+import profileReducer, {addPostAC, changeNewTextAC, setStatus, setUsersProfile} from "./profile-reducer";
 import dialogsReducer, {sendMessageAC, updateNewMessageAC} from "./dialogs-reducer";
 import sideBarReducer from "./sidebar-reducer";
 import usersReducer, {
@@ -12,7 +12,7 @@ import usersReducer, {
 } from "./users-reducer";
 import authReducer, {setAuthUserData} from "./auth-reducer";
 import thunkMiddleware from 'redux-thunk'
-import friendsReducer, {setStatus, setUsers} from "./friends-reducer";
+import friendsReducer, {setAboutMeFR, setStatusFR, setUsers} from "./friends-reducer";
 
 export type ActionType =
     ReturnType<typeof addPostAC>
@@ -30,6 +30,8 @@ export type ActionType =
     | ReturnType<typeof toggleFollowingProgress>
     | ReturnType<typeof setUsers>
     | ReturnType<typeof setStatus>
+    | ReturnType<typeof setStatusFR>
+    | ReturnType<typeof setAboutMeFR>
 
 let rootReducer = combineReducers({
     profilePage: profileReducer,
@@ -38,6 +40,7 @@ let rootReducer = combineReducers({
     usersPage: usersReducer,
     auth: authReducer,
     friends: friendsReducer
+
 
 });
 

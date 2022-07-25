@@ -11,7 +11,6 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import {ProfileType} from "./redux/profile-reducer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
-import Friends from "./components/Users/Friends";
 
 export type MessagesType = {
     id: number
@@ -37,6 +36,8 @@ export type ProfilePageType = {
     newPostText: string
     posts: Array<PostsType>
     profile: null | ProfileType
+    status:string
+    updateStatus:string
 }
 export type DialogsPageType = {
     messages: Array<MessagesType>

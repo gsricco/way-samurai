@@ -2,7 +2,12 @@ import React from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import {getUsersProfileThunkCreator, ProfileType} from "../../redux/profile-reducer";
+import {
+    getStatusThunkCreator,
+    getUsersProfileThunkCreator,
+    ProfileType,
+    updateStatusThunkCreator
+} from "../../redux/profile-reducer";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
@@ -14,11 +19,15 @@ type PathParamsType = {
 
 export type MapStatePropsType = {
     profile: null|ProfileType
+    status:string
+    updateStatus:string
 }
 
 type MapDispatchPropsType = {
     getUsersProfileThunkCreator: (userId:number) => void
     // setUsersProfile: (profile: ProfileType) => void
+    getStatusThunkCreator:(userId:number)=>void
+    updateStatusThunkCreator:(status:string)=>void
 }
 
 type ProfilePropsType = RouteComponentProps<PathParamsType> & ownProfilePropsType
@@ -32,13 +41,14 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
         let userId=this.props.match.params.userId;
         if(!userId){
             // userId = 2;
-            userId = '2';
+            userId = '24455';
         }
         this.props.getUsersProfileThunkCreator(+userId)
         // axios.get(`https://social-network.samuraijs.com/api/1.0/profile/`+userId)
         //     .then(response => {
         //         this.props.setUsersProfile(response.data);
         //     });
+        this.props.getStatusThunkCreator(+userId)
     }
 
     render() {
@@ -46,6 +56,8 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
             <Profile
                 {...this.props}
                 profile={this.props.profile}
+                status={this.props.status}
+                updateStatusThunkCreator={this.props.updateStatusThunkCreator}
             />
         )
     }
@@ -54,11 +66,13 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
 
 let mapStateToProps = (state: AppStateType):MapStatePropsType => ({
     profile: state.profilePage.profile,
+    status:state.profilePage.status,
+    updateStatus:state.profilePage.updateStatus
 });
 
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {getUsersProfileThunkCreator}),
+    connect(mapStateToProps, {getUsersProfileThunkCreator,updateStatusThunkCreator,getStatusThunkCreator}),
     withRouter,
     withAuthRedirect
 )(ProfileContainer);

@@ -27,3 +27,13 @@
 .descriptionUser{
     text-shadow: 2px 2px 2px white;
 }
+.saveButton{
+    margin: 0 5px;
+    border-radius: 5px;
+}
+.saveButton:hover {
+    border-radius: 10px;
+    background: rgb(62,161,162);
+    background: linear-gradient(153deg, rgba(62,161,162,1) 0%, rgba(253,187,45,1) 100%);
+}
+

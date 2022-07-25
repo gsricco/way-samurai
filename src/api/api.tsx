@@ -26,14 +26,28 @@ export const userAPI = {
     // setAuthUserData(){
     //     return instance.get('auth/me')
     // },
-    getUsersProfile(id:number){
+    getUsersProfile(id: number) {
+        console.warn('Obsolete method. Please used profileAPI object')
+        // return instance.get(`profile/${id}`)
+        return profileAPI.getUsersProfile(id)
+    }
+
+}
+export const profileAPI = {
+    getUsersProfile(id: number) {
         return instance.get(`profile/${id}`)
+    },
+    getStatus(id: number) {
+        return instance.get(`profile/status/${id}`)
+    },
+    updateStatus(status: string) {
+        return instance.put(`profile/status`, {status: status})
     }
 
 }
 
 export const authAPI = {
-    me(){
+    me() {
         return instance.get('auth/me')
     }
 }

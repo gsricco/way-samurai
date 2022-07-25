@@ -6,10 +6,12 @@ import {ProfileType} from "../../../redux/profile-reducer";
 import ProfileStatus from "./ProfileStatus";
 
 type ProfileInfoPropsType = {
-    profile:null|ProfileType
+    profile: null | ProfileType
+    status: string
+    updateStatusThunkCreator: (status: string) => void
 }
 
-const ProfileInfo = (props:ProfileInfoPropsType) => {
+const ProfileInfo = (props: ProfileInfoPropsType) => {
     if (!props.profile) {
         return <Preloader/>
     }
@@ -22,9 +24,12 @@ const ProfileInfo = (props:ProfileInfoPropsType) => {
             </div>
             <div className={s.avatar}>
                 <img className={s.avatarImg}
-                     src={props.profile.photos.large||photoUser}
+                     src={props.profile.photos.large || photoUser}
                      alt=""/>
-                <ProfileStatus status={'Hello my friends'}/>
+                <ProfileStatus
+                    status={props.status}
+                    updateStatusThunkCreator={props.updateStatusThunkCreator}
+                />
                 <div className={s.avatarName}>{props.profile.fullName}</div>
                 <div className={s.descriptionUser}>{props.profile.aboutMe}</div>
             </div>

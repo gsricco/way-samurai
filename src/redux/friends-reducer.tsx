@@ -1,14 +1,10 @@
 import React from 'react';
 import {ActionType} from "./redux-store";
-import {authAPI, userAPI} from "../api/api";
-import {mapDispatchPropsType, UsersPropsType} from "../components/Users/UsersContainer";
-import {Dispatch} from "redux";
-import {setAuthUserData} from "./auth-reducer";
-import {addPostAC, setUsersProfile} from "./profile-reducer";
 import {UserType} from "./users-reducer";
 
 const SET_USERS = 'SN/FRIENDS/SET_USERS';
 const SET_STATUS = 'SN/FRIENDS/SET_STATUS';
+// const SET_ABOUT_ME = 'SN/FRIENDS/SET_ABOUT_ME';
 
 type StatusesType = {
     NOT_INITIALIZED:string
@@ -16,7 +12,7 @@ type StatusesType = {
     INPROGRESS:string
     SUCCESS:string
 }
-export const statuses = {
+export const statuses:StatusesType = {
     NOT_INITIALIZED:'NOT_INITIALIZED',
     ERROR:'ERROR',
     INPROGRESS:'INPROGRESS',
@@ -26,11 +22,13 @@ export const statuses = {
 export type InitialStateType = {
     users: Array<UserType>
     status:string
+    // aboutMe:string|null
 }
 
 const initialState: InitialStateType = {
     users: [] as Array<UserType>,
     status:statuses.NOT_INITIALIZED,
+    // aboutMe:null
 
 };
 
@@ -50,6 +48,11 @@ const friendsReducer = (state: InitialStateType = initialState, action: ActionTy
                 ...state,
                 users: action.users
             }
+        // case SET_ABOUT_ME:
+        //     return {
+        //         ...state,
+        //         aboutMe: action.aboutMe
+        //     }
 
         default:
             return state;
@@ -57,7 +60,8 @@ const friendsReducer = (state: InitialStateType = initialState, action: ActionTy
 }
 
 export const setUsers = (users: Array<UserType>) => ({type: SET_USERS, users} as const)
-export const setStatus = (status: string) => ({type: SET_STATUS, status} as const)
+export const setStatusFR = (status: string) => ({type: SET_STATUS, status} as const)
+// export const setAboutMeFR = (aboutMe: string) => ({type: SET_ABOUT_ME, aboutMe} as const)
 
 
 
