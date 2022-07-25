@@ -3,7 +3,7 @@ import {sendMessageAC, updateNewMessageAC} from "../../redux/dialogs-reducer";
 import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import {Dispatch} from "redux";
+import {compose, Dispatch} from "redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {DialogsPageType} from "../../App";
 
@@ -31,15 +31,22 @@ let mapDispatchToProps =(dispatch:Dispatch)=>{
     }
 }
 
-let AuthRedirectComponent = withAuthRedirect<mapStateToPropsType & mapDispatchToPropsType>(Dialogs);
 
-
+// compose(
+//     connect(mapStateToProps, mapDispatchToProps),
+//     withAuthRedirect
+// )(Dialogs)
+// let AuthRedirectComponent = withAuthRedirect<mapStateToPropsType & mapDispatchToPropsType>(Dialogs);
 // let AuthRedirectComponent = (props:DialogsPropsType)=>{
 //     if(!this.props.isAuth) return <Redirect to={'/login'}/>
 //
 //     return <Dialogs {...props} />
 // }
+// const DialogsContainer = connect<mapStateToPropsType,mapDispatchToPropsType,{},AppStateType>(mapStateToProps,mapDispatchToProps)(AuthRedirectComponent);
+// export default DialogsContainer;
 
 
-const DialogsContainer = connect<mapStateToPropsType,mapDispatchToPropsType,{},AppStateType>(mapStateToProps,mapDispatchToProps)(AuthRedirectComponent);
-export default DialogsContainer;
+export default compose<React.ComponentType>(
+    connect(mapStateToProps, mapDispatchToProps),
+    withAuthRedirect
+)(Dialogs);

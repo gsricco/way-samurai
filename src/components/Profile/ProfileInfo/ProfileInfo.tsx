@@ -3,6 +3,7 @@ import s from "../Profile.module.css";
 import {Preloader} from "../../common/Preloader/Preloader";
 import photoUser from '../../../assets/images/user.png'
 import {ProfileType} from "../../../redux/profile-reducer";
+import ProfileStatus from "./ProfileStatus";
 
 type ProfileInfoPropsType = {
     profile:null|ProfileType
@@ -23,6 +24,7 @@ const ProfileInfo = (props:ProfileInfoPropsType) => {
                 <img className={s.avatarImg}
                      src={props.profile.photos.large||photoUser}
                      alt=""/>
+                <ProfileStatus status={'Hello my friends'}/>
                 <div className={s.avatarName}>{props.profile.fullName}</div>
                 <div className={s.descriptionUser}>{props.profile.aboutMe}</div>
             </div>
