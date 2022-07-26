@@ -41,7 +41,7 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
         let userId=this.props.match.params.userId;
         if(!userId){
             // userId = 2;
-            userId = '24455';
+            userId = '2';
         }
         this.props.getUsersProfileThunkCreator(+userId)
         // axios.get(`https://social-network.samuraijs.com/api/1.0/profile/`+userId)
@@ -50,8 +50,23 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
         //     });
         this.props.getStatusThunkCreator(+userId)
     }
+componentDidUpdate(prevProps: Readonly<ProfilePropsType>, prevState: Readonly<{}>) {
+        // debugger
+    console.log('componentDidUpdate');
+    if(prevProps.status !== this.props.status) {
+        this.setState({
+            status: this.props.status
+        })
+    }
+}
+
+    // componentDidUpdate(prevProps,prevState) {
+    //     console.log('componentDidUpdate')
+    // }
 
     render() {
+        console.log('render')
+
         return (
             <Profile
                 {...this.props}

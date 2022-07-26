@@ -12,7 +12,7 @@ import usersReducer, {
 } from "./users-reducer";
 import authReducer, {setAuthUserData} from "./auth-reducer";
 import thunkMiddleware from 'redux-thunk'
-import friendsReducer, {setAboutMeFR, setStatusFR, setUsers} from "./friends-reducer";
+import friendsReducer, {setStatusFR, setUsers} from "./friends-reducer";
 
 export type ActionType =
     ReturnType<typeof addPostAC>
@@ -31,7 +31,6 @@ export type ActionType =
     | ReturnType<typeof setUsers>
     | ReturnType<typeof setStatus>
     | ReturnType<typeof setStatusFR>
-    | ReturnType<typeof setAboutMeFR>
 
 let rootReducer = combineReducers({
     profilePage: profileReducer,
