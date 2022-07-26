@@ -13,6 +13,7 @@ import usersReducer, {
 import authReducer, {setAuthUserData} from "./auth-reducer";
 import thunkMiddleware from 'redux-thunk'
 import friendsReducer, {setStatusFR, setUsers} from "./friends-reducer";
+import { reducer as formReducer } from 'redux-form'
 
 export type ActionType =
     ReturnType<typeof addPostAC>
@@ -38,7 +39,8 @@ let rootReducer = combineReducers({
     sideBar: sideBarReducer,
     usersPage: usersReducer,
     auth: authReducer,
-    friends: friendsReducer
+    friends: friendsReducer,
+    form:formReducer
 
 
 });
